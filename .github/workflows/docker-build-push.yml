@@ -34,6 +34,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=false
           tags: |
             type=raw,value=${{ github.ref_name }},enable=${{ github.ref_type == 'branch' }}
             type=sha,format=short,prefix=${{ github.ref_name }}-,enable=${{ github.ref_type == 'branch' }}
