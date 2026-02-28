@@ -35,7 +35,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,format=short,prefix={{branch}}-,enable=${{ github.ref_type == 'branch' }}
+            type=raw,value=${{ github.ref_name }},enable=${{ github.ref_type == 'branch' }}
+            type=sha,format=short,prefix=${{ github.ref_name }}-,enable=${{ github.ref_type == 'branch' }}
             type=raw,value=${{ github.ref_name }},enable=${{ github.ref_type == 'tag' }}
             type=raw,value=latest,enable=${{ github.ref_type == 'tag' }}
 
@@ -53,5 +54,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          provenance: false
+          sbom: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
