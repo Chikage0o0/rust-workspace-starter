@@ -1,0 +1,14 @@
+disallowed-names = [
+  "foo",
+  "bar",
+  "baz",
+  "tmp",
+  "temp",
+  "var",
+  "val",
+  "data",
+  "obj",
+  "item",
+  "test123",
+  "xxx",
+]

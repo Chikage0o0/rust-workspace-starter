@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "read": {
+      "*": "allow",
+      "*.env.example": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "pre-commit run *": "allow",
+      "cargo fmt*": "allow",
+      "cargo clippy *": "allow",
+      "cargo check *": "allow",
+      "cargo nextest *": "allow",
+      "cargo test *": "allow",
+      "cargo doc *": "allow"
+    },
+    "skill": "allow"
+  }
+}

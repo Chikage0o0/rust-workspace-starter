@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rust-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Install cargo-nextest
+        uses: taiki-e/install-action@nextest
+
+      - name: workspace dependency policy
+        run: python3 scripts/check_workspace_dependency_policy.py
+
+      - name: cargo fmt
+        run: cargo fmt --all -- --check
+
+      - name: cargo clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: cargo check
+        run: cargo check --workspace
+
+      - name: cargo nextest
+        run: cargo nextest run --workspace --all-features --no-tests pass
+
+      - name: cargo doc
+        env:
+          RUSTDOCFLAGS: -D warnings
+        run: cargo doc --workspace --all-features --no-deps

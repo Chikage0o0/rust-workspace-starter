@@ -1,0 +1,26 @@
+# === 开发环境与本地覆盖 ===
+# devenv 生成目录与本地覆盖配置
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+
+# direnv 本地状态
+.direnv
+
+# === 语言与构建缓存 ===
+# Python 工具缓存
+.ruff_cache/
+
+# Rust 构建产物
+target/
+
+# === 本地配置与密钥 ===
+# 忽略所有本地 env，保留示例文件用于共享配置键
+.env
+.env.*
+!.env.example
+
+# === Docker 本地产物 ===
+# 本地 Docker 构建中间目录与导出镜像包
+.docker/
+*.docker.tar

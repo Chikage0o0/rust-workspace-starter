@@ -1,0 +1,21 @@
+# === 版本控制与协作元数据 ===
+.git
+.github
+
+# === 本地开发环境文件 ===
+.devenv
+.direnv
+devenv.lock
+devenv.nix
+devenv.yaml
+
+# === 构建与文档产物 ===
+target
+docs
+*.md
+
+# === 本地配置与密钥 ===
+# 构建上下文不携带本地密钥，仅保留示例模板
+.env
+.env.*
+!.env.example
